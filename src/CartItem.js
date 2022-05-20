@@ -9,14 +9,35 @@ class CartItem extends React.Component{
             qty : 2,
             img : ''
         }
+        // this.testing();
     }
+
+    // testing(){
+    //     const promise = new Promise((resolve,reject) => {
+    //         setTimeout(() => {
+    //             resolve('done');
+    //         }, 5000);
+    //     })
+
+    //     promise.then(() => {
+    //         this.setState({qty:this.state.qty+10});
+    //         this.setState({qty:this.state.qty+10});
+    //         this.setState({qty:this.state.qty+10});
+
+    //         //In Promise setState acts like a synchronous call
+    //         console.log('state',this.state);
+    //     });
+    // }
 
     increaseQuantity = () => {
         this.setState((prevState) => {
             return{
                 qty:prevState.qty + 1
             }
+        }, () => {
+            // console.log(this.state);
         })
+        
     }
     decreaseQuantity = () => {
         this.setState((prevState) => {
@@ -27,6 +48,8 @@ class CartItem extends React.Component{
             }else{
                 return prevState.qty;
             }
+        }, () => {
+            // console.log(this.state);
         })
     }
     deleteQuantity = () => {
@@ -36,8 +59,10 @@ class CartItem extends React.Component{
             }
         })
     }
+    
 
     render(){
+        // console.log('render');
         const{price, title, qty} = this.state;
         return (
           <div className="cart-item">
