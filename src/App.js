@@ -59,7 +59,7 @@ class App extends React.Component {
                 qty: products[index].qty + 1
             })
             .then(() => {
-                console.log("Updated Successfully");
+                console.log("Increased Successfully");
             })
             .catch((error) => {
                 console.log('Error', error);
@@ -91,7 +91,7 @@ class App extends React.Component {
                 qty: products[index].qty - 1
             })
             .then(() => {
-                console.log("Updated Successfully");
+                console.log("Decreased Successfully");
             })
             .catch((error) => {
                 console.log('Error', error);
@@ -108,10 +108,23 @@ class App extends React.Component {
     handleDeleteQuantity = (id) => {
         const { products } = this.state;
 
-        const filteredItems = products.filter((singleProduct) => singleProduct.id!=id);
-        this.setState({
-            products:filteredItems
-        })
+        // const filteredItems = products.filter((singleProduct) => singleProduct.id!=id);
+        // this.setState({
+        //     products:filteredItems
+        // })
+        const docRef = this.db.collection('products').doc(id);
+
+        console.log(docRef);
+
+        docRef
+            .delete()
+            .then(() => {
+                console.log("Deleted Successfully");
+            })
+            .catch((error) => {
+                console.log('Error', error);
+            })
+
     }
 
     getCartCount = () => {
